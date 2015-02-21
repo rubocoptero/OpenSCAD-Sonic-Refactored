@@ -266,14 +266,23 @@ module ears() {
 			ear();
 }
 
+module sonic () {
+	head_base();
+	eyes();
+	hair();
+	nose();
+	mouth_area();
+	smirk();
+	ears();
+}
 
-base();
-head_base();
-eyes();
-hair();
-nose();
-mouth_area();
-smirk();
-ears();
+module main () {
+	base();
+	sonic();
+}
+
+main();
+
+	
 
 
