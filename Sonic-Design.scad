@@ -113,9 +113,7 @@ module eyes () {
 	eye(invert(y));
 }
 
-base();
-head_base();
-eyes();
+
 
 //Sonic's spiky hair
 module hair(d,x,y,z,r){ 
@@ -125,33 +123,29 @@ module hair(d,x,y,z,r){
 				cylinder(h=5,r=r);
 }
 
+module a_hair(d,x,y,z,r){ 
+	for (i = [0:25]){
+		color([.31, .45, .69])
+			rotate([0,d - i,0])
+				translate([x - i / 25, y, z - i])
+					cylinder(h=5,r=r - i / 3.125);
+	}
+}
+
+base();
+head_base();
+eyes();
+
 //Unfortunately SCAD doesn't allow calling 
 //modules within modules, excuse how messy this 
 //looks
 
-for (i = [0:25]){
-	hair(90-i,-12-i/25,0,-8-i,8-i/3.125);
-}
-
-for (i = [0:25]){
-	hair(90-i,-5-i/25,8,-8-i,8-i/3.125);
-}
-
-for (i = [0:25]){
-	hair(90-i,-5-i/25,-8,-8-i,8-i/3.125);
-}
-
-for (i = [0:25]){
-	hair(90-i,5-i/25,8,-8-i,8-i/3.125);
-}
-
-for (i = [0:25]){
-	hair(90-i,5-i/25,-8,-8-i,8-i/3.125);
-}
-
-for (i = [0:25]){
-	hair(90-i,0-i/25,0,-8-i,8-i/3.125);
-}
+a_hair(90,-12,0,-8,8);
+a_hair(90,-5,8,-8,8);
+a_hair(90,-5,-8,-8,8);
+a_hair(90,5,8,-8,8);
+a_hair(90,5,-8,-8,8);
+a_hair(90,0,0,-8,8);
 
 //Nose
 
