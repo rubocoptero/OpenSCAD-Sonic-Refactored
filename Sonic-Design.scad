@@ -8,6 +8,7 @@ BLACK =  "Black";
 BLUE = [.31, .45, .69];
 WHITE = "White";
 LIME_GREEN = "LimeGreen";
+SKIN = [.90,.596,.41];
 
 EYEBALL_OFFSET_X = 14;
 EYEBALL_OFFSET_Y = 8;
@@ -148,26 +149,34 @@ module hair () {
 	positioned_hair(0,0,z);
 }
 
+module nostril (z) {
+	radius = 2;
+	
+	translate([1,0,z])
+		sphere(r=radius);
+}
+
 module nose () {
+	offset_z = 3;
+
 	translate([20,0,0])
 	difference(){
 		color("Black")
 		hull(){
 			sphere(r=2);
 	
-		translate([2,0,0])
-			sphere(r=2.4);}
+			translate([2,0,0])
+				sphere(r=2.4);
+		}
 	
-		translate([1,0,3])
-			sphere(r=2);
+		nostril(offset_z);
 	
-		translate([1,0,-3])
-			sphere(r=2);
+		nostril(invert(offset_z));
 	} 
 }
 
 module mouth_area () {
-	color([.90,.596,.41])
+	color(SKIN)
 	translate([7,0,0])
 		difference(){
 			sphere(r=15);
@@ -176,8 +185,8 @@ module mouth_area () {
 				cube([15,30,30]);
 	
 			rotate([0,90,0])
-			translate([-15,-15,-15])
-				cube([15,30,30]);
+				translate([-15,-15,-15])
+					cube([15,30,30]);
 	
 			sphere(r=13.5);
 	
