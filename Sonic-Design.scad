@@ -71,29 +71,36 @@ module eyeball () {
 	}
 }
 
-module eye(y) {
-	//Iris
+module iris (y) {
 	color("LimeGreen") {
 		translate([18.3,y,4]) {
 			scale([2.0,2.0,3.0]) 
 				sphere(r=1.0); 
 		}
 	}
-	
-	//Pupil
+}
+
+module pupil (y) {
 	color("Black") {
 		translate([19.6,y,3]){
 			scale([1,1,2])
 				sphere(r=1);
 		}
 	}
+}
 
-	//Light
+module light (y) {
 	color("White") {
 		translate([20.1,y-.2,2]) {
 				sphere(r=.4);
 		}
 	}
+}
+
+module eye(y) {
+	iris(y);
+	pupil(y);
+	light(y);
 }
 
 module eyes () {
