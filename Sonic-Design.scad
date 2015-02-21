@@ -2,16 +2,19 @@
 husmum@gatech.edu
 */
 
-
+BLACK =  "Black";
 //Lets make Sonic's Head
 
 //F6 renders without color
 
 module base () {
-	//Cylindrical Base
-	color("Black")
-		translate([-6,0,-20])
-			cylinder(h=2,r=32);
+	height = 2;
+	radius = 32;
+	offset = [-6,0,-20];
+
+	color(BLACK)
+		translate(offset)
+			cylinder(h=height,r=radius);
 }
 
 base();
