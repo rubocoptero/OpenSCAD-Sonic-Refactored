@@ -7,10 +7,14 @@ husmum@gatech.edu
 
 //F6 renders without color
 
-//Cylindrical Base
-color("Black")
-translate([-6,0,-20])
-	cylinder(h=2,r=32);
+module base () {
+	//Cylindrical Base
+	color("Black")
+		translate([-6,0,-20])
+			cylinder(h=2,r=32);
+}
+
+base();
 
 //Face and space for eyes
 difference(){
