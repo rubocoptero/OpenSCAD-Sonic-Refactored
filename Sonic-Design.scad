@@ -37,7 +37,7 @@ module head () {
 		sphere(r=inner_radius);
 }
 
-module eyes_space () {
+module eyeball_space () {
 	offset_x = EYEBALL_OFFSET_X + 1;
 	offset_y = 8;
 	offset_z = 4;
@@ -55,7 +55,7 @@ module eyes_space () {
 module head_base () {
 	difference(){
 		head();
-		eyes_space();
+		eyeball_space();
 	}
 }
 
