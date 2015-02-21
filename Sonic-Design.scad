@@ -57,20 +57,25 @@ head_base();
 
 //Eyes
 
-//Base
-color("White"){
-difference(){
-	hull(){
-		translate([14,8,4])
-			sphere(r=5);
-		translate([14,-8,4])
-			sphere(r=5);}}
+module eyeball () {
+	color("White"){
+	difference(){
+		hull(){
+			translate([14,8,4])
+				sphere(r=5);
+			translate([14,-8,4])
+				sphere(r=5);}}
+	
+		hull(){
+			translate([14,8,4])
+				sphere(r=3);
+			translate([14,-8,4])
+				sphere(r=3);
+		}
+	}
+}
 
-	hull(){
-		translate([14,8,4])
-			sphere(r=3);
-		translate([14,-8,4])
-			sphere(r=3);}}
+eyeball();
 
 module eye(y)
 {
