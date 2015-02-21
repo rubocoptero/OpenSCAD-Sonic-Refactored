@@ -17,20 +17,33 @@ module base () {
 			cylinder(h=height,r=radius);
 }
 
-base();
-
-//Face and space for eyes
-difference(){
+module head () {
 	color([.31, .45, .69])
 		sphere(r=20);
 	
 		sphere(r=18);
+}
+
+module eyes_space () {
 	hull(){
 		translate([15,8,4])
 				sphere(r=5);
 		
 		translate([15,-8,4])
-				sphere(r=5);}}
+				sphere(r=5);
+	}
+}
+
+module head_base () {
+	//Face and space for eyes
+	difference(){
+		head();
+		eyes_space();
+	}
+}
+
+base();
+head_base();
 
 //Eyes
 
