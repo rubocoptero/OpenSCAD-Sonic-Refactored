@@ -6,6 +6,13 @@ INVERTER_FACTOR = -1;
 
 BLACK =  "Black";
 BLUE = [.31, .45, .69];
+WHITE = "White";
+
+EYEBALL_OFFSET_X = 14;
+EYEBALL_OFFSET_Y = 8;
+EYEBALL_OFFSET_Z = 4;
+
+
 //Lets make Sonic's Head
 
 //F6 renders without color
@@ -58,18 +65,20 @@ head_base();
 //Eyes
 
 module eyeball () {
-	color("White"){
-	difference(){
+	color(WHITE) {
+		difference() {
+			hull(){
+				translate([EYEBALL_OFFSET_X,8,EYEBALL_OFFSET_Z])
+					sphere(r=5);
+				translate([EYEBALL_OFFSET_X,-8,EYEBALL_OFFSET_Z])
+					sphere(r=5);
+			}
+		}
+		
 		hull(){
-			translate([14,8,4])
-				sphere(r=5);
-			translate([14,-8,4])
-				sphere(r=5);}}
-	
-		hull(){
-			translate([14,8,4])
+			translate([EYEBALL_OFFSET_X,8,EYEBALL_OFFSET_Z])
 				sphere(r=3);
-			translate([14,-8,4])
+			translate([EYEBALL_OFFSET_X,-8,EYEBALL_OFFSET_Z])
 				sphere(r=3);
 		}
 	}
