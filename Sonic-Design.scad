@@ -12,6 +12,7 @@ EYEBALL_OFFSET_X = 14;
 EYEBALL_OFFSET_Y = 8;
 EYEBALL_OFFSET_Z = 4;
 EYEBALL_RADIUS = 5;
+EYEBALL_SMALLEST_RADIUS = 3;
 
 
 //Lets make Sonic's Head
@@ -66,18 +67,18 @@ module eyeball () {
 	color(WHITE) {
 		difference() {
 			hull(){
-				translate([EYEBALL_OFFSET_X,8,EYEBALL_OFFSET_Z])
-					sphere(r=5);
-				translate([EYEBALL_OFFSET_X,-8,EYEBALL_OFFSET_Z])
-					sphere(r=5);
+				translate([EYEBALL_OFFSET_X, EYEBALL_OFFSET_Y ,EYEBALL_OFFSET_Z])
+					sphere(r=EYEBALL_RADIUS);
+				translate([EYEBALL_OFFSET_X, EYEBALL_OFFSET_Y * INVERTER_FACTOR,EYEBALL_OFFSET_Z])
+					sphere(r=EYEBALL_RADIUS);
 			}
 		}
 		
 		hull(){
-			translate([EYEBALL_OFFSET_X,8,EYEBALL_OFFSET_Z])
-				sphere(r=3);
-			translate([EYEBALL_OFFSET_X,-8,EYEBALL_OFFSET_Z])
-				sphere(r=3);
+			translate([EYEBALL_OFFSET_X, EYEBALL_OFFSET_Y ,EYEBALL_OFFSET_Z])
+					sphere(r=EYEBALL_SMALLEST_RADIUS);
+				translate([EYEBALL_OFFSET_X,EYEBALL_OFFSET_Y * INVERTER_FACTOR,EYEBALL_OFFSET_Z])
+					sphere(r=EYEBALL_SMALLEST_RADIUS);
 		}
 	}
 }
