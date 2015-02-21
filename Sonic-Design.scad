@@ -58,11 +58,6 @@ module head_base () {
 	}
 }
 
-base();
-head_base();
-
-//Eyes
-
 module eyeball () {
 	color(WHITE) {
 		difference() {
@@ -83,29 +78,40 @@ module eyeball () {
 	}
 }
 
-eyeball();
-
-module eye(y)
-{
+module eye(y) {
 	//Iris
-	color("LimeGreen"){
+	color("LimeGreen") {
 		translate([18.3,y,4]) {
 			scale([2.0,2.0,3.0]) 
-				sphere(r=1.0); }}
+				sphere(r=1.0); 
+		}
+	}
 	
 	//Pupil
-	color("Black"){
+	color("Black") {
 		translate([19.6,y,3]){
 			scale([1,1,2])
-				sphere(r=1);}}
+				sphere(r=1);
+		}
+	}
 
 	//Light
-	color("White"){
-		translate([20.1,y-.2,2]){
-				sphere(r=.4);}}}
+	color("White") {
+		translate([20.1,y-.2,2]) {
+				sphere(r=.4);
+		}
+	}
+}
 
-eye(7);
-eye(-7);
+module eyes () {
+	eyeball();
+	eye(7);
+	eye(-7);
+}
+
+base();
+head_base();
+eyes();
 
 //Sonic's spiky hair
 module hair(d,x,y,z,r){ 
