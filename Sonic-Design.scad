@@ -11,6 +11,7 @@ WHITE = "White";
 EYEBALL_OFFSET_X = 14;
 EYEBALL_OFFSET_Y = 8;
 EYEBALL_OFFSET_Z = 4;
+EYEBALL_RADIUS = 5;
 
 
 //Lets make Sonic's Head
@@ -39,16 +40,13 @@ module head () {
 
 module eyeball_space () {
 	offset_x = EYEBALL_OFFSET_X + 1;
-	offset_y = 8;
-	offset_z = 4;
-	radius = 5;
 
 	hull(){
 		translate([offset_x, EYEBALL_OFFSET_Y, EYEBALL_OFFSET_Z])
-				sphere(r=radius);
+				sphere(r=EYEBALL_RADIUS);
 		
 		translate([offset_x, EYEBALL_OFFSET_Y * INVERTER_FACTOR, EYEBALL_OFFSET_Z])
-				sphere(r=radius);
+				sphere(r=EYEBALL_RADIUS);
 	}
 }
 
