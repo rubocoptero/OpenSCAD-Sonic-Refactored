@@ -15,6 +15,7 @@ EYEBALL_OFFSET_Z = 4;
 EYEBALL_RADIUS = 5;
 EYEBALL_SMALLEST_RADIUS = 3;
 
+function invert (number) = number * INVERTER_FACTOR;
 
 //Lets make Sonic's Head
 
@@ -44,7 +45,7 @@ module eyeball_shape (radius, offset_x) {
 	hull(){
 		translate([offset_x, EYEBALL_OFFSET_Y ,EYEBALL_OFFSET_Z])
 			sphere(r=radius);
-		translate([offset_x, EYEBALL_OFFSET_Y * INVERTER_FACTOR, EYEBALL_OFFSET_Z])
+		translate([offset_x, invert(EYEBALL_OFFSET_Y), EYEBALL_OFFSET_Z])
 			sphere(r=radius);
 	}
 }
@@ -109,7 +110,7 @@ module eyes () {
 
 	eyeball();
 	eye(y);
-	eye(y * INVERTER_FACTOR);
+	eye(invert(y));
 }
 
 base();
