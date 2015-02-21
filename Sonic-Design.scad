@@ -39,16 +39,19 @@ module head () {
 		sphere(r=inner_radius);
 }
 
+module eyeball_shape (radius, offset_x) {
+	hull(){
+		translate([offset_x, EYEBALL_OFFSET_Y ,EYEBALL_OFFSET_Z])
+			sphere(r=radius);
+		translate([offset_x, EYEBALL_OFFSET_Y * INVERTER_FACTOR, EYEBALL_OFFSET_Z])
+			sphere(r=radius);
+	}
+}
+
 module eyeball_space () {
 	offset_x = EYEBALL_OFFSET_X + 1;
 
-	hull(){
-		translate([offset_x, EYEBALL_OFFSET_Y, EYEBALL_OFFSET_Z])
-				sphere(r=EYEBALL_RADIUS);
-		
-		translate([offset_x, EYEBALL_OFFSET_Y * INVERTER_FACTOR, EYEBALL_OFFSET_Z])
-				sphere(r=EYEBALL_RADIUS);
-	}
+	eyeball_shape (EYEBALL_RADIUS, offset_x);
 }
 
 module head_base () {
@@ -61,20 +64,10 @@ module head_base () {
 module eyeball () {
 	color(WHITE) {
 		difference() {
-			hull(){
-				translate([EYEBALL_OFFSET_X, EYEBALL_OFFSET_Y ,EYEBALL_OFFSET_Z])
-					sphere(r=EYEBALL_RADIUS);
-				translate([EYEBALL_OFFSET_X, EYEBALL_OFFSET_Y * INVERTER_FACTOR,EYEBALL_OFFSET_Z])
-					sphere(r=EYEBALL_RADIUS);
-			}
+			eyeball_shape (EYEBALL_RADIUS, EYEBALL_OFFSET_X);
 		}
 		
-		hull(){
-			translate([EYEBALL_OFFSET_X, EYEBALL_OFFSET_Y ,EYEBALL_OFFSET_Z])
-					sphere(r=EYEBALL_SMALLEST_RADIUS);
-				translate([EYEBALL_OFFSET_X,EYEBALL_OFFSET_Y * INVERTER_FACTOR,EYEBALL_OFFSET_Z])
-					sphere(r=EYEBALL_SMALLEST_RADIUS);
-		}
+		eyeball_shape (EYEBALL_SMALLEST_RADIUS, EYEBALL_OFFSET_X);
 	}
 }
 
