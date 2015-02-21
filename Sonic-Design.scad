@@ -2,7 +2,10 @@
 husmum@gatech.edu
 */
 
+INVERTER_FACTOR = -1;
+
 BLACK =  "Black";
+BLUE = [.31, .45, .69];
 //Lets make Sonic's Head
 
 //F6 renders without color
@@ -18,24 +21,31 @@ module base () {
 }
 
 module head () {
-	color([.31, .45, .69])
-		sphere(r=20);
+	outter_radius = 20;
+	inner_radius = outter_radius - 2;
+
+	color(BLUE)
+		sphere(r=outter_radius);
 	
-		sphere(r=18);
+		sphere(r=inner_radius);
 }
 
 module eyes_space () {
+	offset_x = 15;
+	offset_y = 8;
+	offset_z = 4;
+	radius = 5;
+
 	hull(){
-		translate([15,8,4])
-				sphere(r=5);
+		translate([offset_x, offset_y, offset_z])
+				sphere(r=radius);
 		
-		translate([15,-8,4])
-				sphere(r=5);
+		translate([offset_x, offset_y * INVERTER_FACTOR, offset_z])
+				sphere(r=radius);
 	}
 }
 
 module head_base () {
-	//Face and space for eyes
 	difference(){
 		head();
 		eyes_space();
