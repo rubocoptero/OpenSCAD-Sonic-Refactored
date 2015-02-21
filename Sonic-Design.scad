@@ -126,12 +126,14 @@ module hair(d,x,y,z,r){
 module positioned_hair(x,y,z){
 	delta = 90;
 	radius = 8;
+	height = 5;
+	number_of_parts = 25;
 
-	for (i = [0:25]){
-		color([.31, .45, .69])
-			rotate([0,delta - i,0])
-				translate([x - i / 25, y, z - i])
-					cylinder(h=5,r=radius - i / 3.125);
+	for (i = [0:number_of_parts]){
+		color(BLUE)
+			rotate([0, delta - i, 0])
+				translate([x - i / number_of_parts, y, z - i])
+					cylinder(h=height,r=radius - i / 3.125);
 	}
 }
 
