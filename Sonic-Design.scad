@@ -148,120 +148,132 @@ module hair () {
 	positioned_hair(0,0,z);
 }
 
+module nose () {
+	translate([20,0,0])
+	difference(){
+		color("Black")
+		hull(){
+			sphere(r=2);
+	
+		translate([2,0,0])
+			sphere(r=2.4);}
+	
+		translate([1,0,3])
+			sphere(r=2);
+	
+		translate([1,0,-3])
+			sphere(r=2);
+	} 
+}
+
+module mouth_area () {
+	color([.90,.596,.41])
+	translate([7,0,0])
+		difference(){
+			sphere(r=15);
+	
+			translate([-15,-15,-15])
+				cube([15,30,30]);
+	
+			rotate([0,90,0])
+			translate([-15,-15,-15])
+				cube([15,30,30]);
+	
+			sphere(r=13.5);
+	
+			translate([8,-7.5,6])
+				sphere(r=9);
+	
+			translate([8,7.5,6])
+				sphere(r=9);
+	
+			translate([15,0,2])
+				sphere(r=4);
+	}
+}
+
+module smirk () {
+	color("Black")
+	translate([-10,3,-7]){
+		difference(){
+			rotate([15,0,0])
+			translate([30,0,0])
+			scale([1,4,1])
+				sphere(r=1);
+			
+			rotate([15,0,0])
+			translate([30,0,1])
+			scale([1,4,1])
+				sphere(r=1);
+		}
+		
+		difference(){
+			rotate([-15,0,0])
+			translate([30,3,2])
+			scale([1,1,4])
+				sphere(r=1);
+			
+			rotate([-15,0,0])
+			translate([30,3,0])
+			scale([1,1,4])
+				sphere(r=1);
+		}
+		
+		difference(){
+			rotate([15,0,0])
+			translate([30,3.5,0])
+			scale([1,1,4])
+				sphere(r=1);
+			
+			rotate([15,0,0])
+			translate([30,3.5,2])
+			scale([1,1,4])
+				sphere(r=1);
+		}
+	}
+}
+
+module ear() {
+	color([.31, .45, .69])
+		difference() {
+			cylinder(h=10, r1=5, r2=0);
+			
+			cylinder(h=6, r1=4, r2=0);
+			
+			translate([0,-5,0])
+			cube([10,10,10]);
+		}
+
+	//Inner lobes. The difference shading is eh, 
+	//but it is needed to indicate the inner lobes
+	color([.90,.596,.41])
+		difference() {
+			cylinder(h=6, r1=4, r2=0);
+			
+			translate([0,-4,0])
+			cube([8,8,8]);
+		}
+}
+
+
+module ears() {
+	translate([5,10,16])
+		rotate([-25,0,0])
+			ear();
+	
+	translate([5,-10,16])
+		rotate([25,0,0])
+			ear();
+}
+
+
 base();
 head_base();
 eyes();
 hair();
+nose();
+mouth_area();
+smirk();
+ears();
 
-//Nose
 
-translate([20,0,0])
-difference(){
-	color("Black")
-	hull(){
-		sphere(r=2);
-
-	translate([2,0,0])
-		sphere(r=2.4);}
-
-	translate([1,0,3])
-		sphere(r=2);
-
-	translate([1,0,-3])
-		sphere(r=2);} 
-
-//Mouth Area
-
-color([.90,.596,.41])
-translate([7,0,0])
-	difference(){
-		sphere(r=15);
-
-		translate([-15,-15,-15])
-			cube([15,30,30]);
-
-		rotate([0,90,0])
-		translate([-15,-15,-15])
-			cube([15,30,30]);
-
-		sphere(r=13.5);
-
-		translate([8,-7.5,6])
-			sphere(r=9);
-
-		translate([8,7.5,6])
-			sphere(r=9);
-
-		translate([15,0,2])
-			sphere(r=4);}
-
-//Smirk
-
-color("Black")
-translate([-10,3,-7]){
-difference(){
-rotate([15,0,0])
-translate([30,0,0])
-scale([1,4,1])
-	sphere(r=1);
-
-rotate([15,0,0])
-translate([30,0,1])
-scale([1,4,1])
-	sphere(r=1);
-}
-
-difference(){
-rotate([-15,0,0])
-translate([30,3,2])
-scale([1,1,4])
-	sphere(r=1);
-
-rotate([-15,0,0])
-translate([30,3,0])
-scale([1,1,4])
-	sphere(r=1);
-}
-
-difference(){
-rotate([15,0,0])
-translate([30,3.5,0])
-scale([1,1,4])
-	sphere(r=1);
-
-rotate([15,0,0])
-translate([30,3.5,2])
-scale([1,1,4])
-	sphere(r=1);
-}}
-
-//Ears
-
-module ear() {
-color([.31, .45, .69])
-difference(){
-cylinder(h=10, r1=5, r2=0);
-
-cylinder(h=6, r1=4, r2=0);
-
-translate([0,-5,0])
-cube([10,10,10]);
-}
-
-//Inner lobes. The difference shading is eh, 
-//but it is needed to indicate the inner lobes
-
-color([.90,.596,.41])
-difference(){
-cylinder(h=6, r1=4, r2=0);
-
-translate([0,-4,0])
-cube([8,8,8]);}
-}
-translate([5,10,16])
-rotate([-25,0,0])
-ear();
-
-translate([5,-10,16])
-rotate([25,0,0])
-ear();
