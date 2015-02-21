@@ -123,7 +123,7 @@ module hair(d,x,y,z,r){
 				cylinder(h=5,r=r);
 }
 
-module a_hair(d,x,y,z,r){ 
+module a_hair(d,x,y,z,r){
 	for (i = [0:25]){
 		color([.31, .45, .69])
 			rotate([0,d - i,0])
@@ -132,20 +132,19 @@ module a_hair(d,x,y,z,r){
 	}
 }
 
+module hair () {
+	a_hair(90,-12,0,-8,8);
+	a_hair(90,-5,8,-8,8);
+	a_hair(90,-5,-8,-8,8);
+	a_hair(90,5,8,-8,8);
+	a_hair(90,5,-8,-8,8);
+	a_hair(90,0,0,-8,8);
+}
+
 base();
 head_base();
 eyes();
-
-//Unfortunately SCAD doesn't allow calling 
-//modules within modules, excuse how messy this 
-//looks
-
-a_hair(90,-12,0,-8,8);
-a_hair(90,-5,8,-8,8);
-a_hair(90,-5,-8,-8,8);
-a_hair(90,5,8,-8,8);
-a_hair(90,5,-8,-8,8);
-a_hair(90,0,0,-8,8);
+hair();
 
 //Nose
 
