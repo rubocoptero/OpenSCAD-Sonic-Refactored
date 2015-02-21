@@ -123,22 +123,27 @@ module hair(d,x,y,z,r){
 				cylinder(h=5,r=r);
 }
 
-module a_hair(d,x,y,z,r){
+module positioned_hair(x,y,z){
+	delta = 90;
+	radius = 8;
+
 	for (i = [0:25]){
 		color([.31, .45, .69])
-			rotate([0,d - i,0])
+			rotate([0,delta - i,0])
 				translate([x - i / 25, y, z - i])
-					cylinder(h=5,r=r - i / 3.125);
+					cylinder(h=5,r=radius - i / 3.125);
 	}
 }
 
 module hair () {
-	a_hair(90,-12,0,-8,8);
-	a_hair(90,-5,8,-8,8);
-	a_hair(90,-5,-8,-8,8);
-	a_hair(90,5,8,-8,8);
-	a_hair(90,5,-8,-8,8);
-	a_hair(90,0,0,-8,8);
+	z = -8;
+
+	positioned_hair(-12,0,z);
+	positioned_hair(-5,8,z);
+	positioned_hair(-5,-8,z);
+	positioned_hair(5,8,z);
+	positioned_hair(5,-8,z);
+	positioned_hair(0,0,z);
 }
 
 base();
