@@ -7,6 +7,7 @@ INVERTER_FACTOR = -1;
 BLACK =  "Black";
 BLUE = [.31, .45, .69];
 WHITE = "White";
+LIME_GREEN = "LimeGreen";
 
 EYEBALL_OFFSET_X = 14;
 EYEBALL_OFFSET_Y = 8;
@@ -72,8 +73,8 @@ module eyeball () {
 }
 
 module iris (y) {
-	color("LimeGreen") {
-		translate([18.3,y,4]) {
+	color(LIME_GREEN) {
+		translate([18.3,y,EYEBALL_OFFSET_Z]) {
 			scale([2.0,2.0,3.0]) 
 				sphere(r=1.0); 
 		}
@@ -81,8 +82,8 @@ module iris (y) {
 }
 
 module pupil (y) {
-	color("Black") {
-		translate([19.6,y,3]){
+	color(BLACK) {
+		translate([19.6,y,EYEBALL_OFFSET_Z - 1]){
 			scale([1,1,2])
 				sphere(r=1);
 		}
@@ -90,8 +91,8 @@ module pupil (y) {
 }
 
 module light (y) {
-	color("White") {
-		translate([20.1,y-.2,2]) {
+	color(WHITE) {
+		translate([20.1,y-.2,EYEBALL_OFFSET_Z - 2]) {
 				sphere(r=.4);
 		}
 	}
@@ -104,9 +105,11 @@ module eye(y) {
 }
 
 module eyes () {
+	y = EYEBALL_OFFSET_Y - 1;
+
 	eyeball();
-	eye(7);
-	eye(-7);
+	eye(y);
+	eye(y * INVERTER_FACTOR);
 }
 
 base();
